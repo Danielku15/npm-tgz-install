@@ -39,3 +39,15 @@ rm -rf node_modules
 echo Installed Dependency contains
 cat ./node_modules/package/lib/dependency.txt
 popd
+
+echo Manually cleaning cache
+npm cache clean --force
+
+pushd consumer
+echo Reinstalling third time
+rm -rf node_modules
+(npm install --force && echo "Install worked") || (echo "Install failed, retry with removing lock" && rm package-lock.json && npm install --force && echo "Install retry worked")
+
+echo Installed Dependency contains
+cat ./node_modules/package/lib/dependency.txt
+popd
