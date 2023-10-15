@@ -24,6 +24,8 @@ popd
 pushd package
 echo Updating File in Package a second time
 echo "After Change - $(date)" > ./lib/dependency.txt
+cat ./lib/dependency.txt
+
 echo Repacking
 rm -f ./package-1.0.0.tgz
 npm pack 
